@@ -116,9 +116,9 @@ const Banner = () => {
       />
 
       {/* Particles */}
-      {particles.map((particle) => (
+      {particles.map((particle, index) => (
         <motion.div
-          key={particle.id}
+          key={index}
           className="fixed rounded-full bg-purple-400 pointer-events-none z-40"
           style={{
             left: particle.x,

@@ -1,177 +1,439 @@
-import React, { useState } from 'react';
-import { FiGithub, FiExternalLink } from 'react-icons/fi';
+import React, { useState } from "react";
+import { FiGithub, FiExternalLink, FiX } from "react-icons/fi";
+import { motion, AnimatePresence } from "framer-motion";
+import image1 from "../assets/kind-hands.png";
+import image2 from "../assets/taskHub.png";
+import image3 from "../assets/gameDay.png";
+
+const CaseStudyButton = ({ project, onClick }) => {
+  const [isClicked, setIsClicked] = useState(false);
+
+  const handleClick = (e) => {
+    e.stopPropagation();
+    setIsClicked(true);
+    setTimeout(() => {
+      onClick(project);
+      setIsClicked(false);
+    }, 400);
+  };
+
+  return (
+    <motion.button
+      onClick={handleClick}
+      className="relative overflow-hidden group px-5 py-2.5 rounded-xl border border-gray-600"
+      whileHover={{
+        scale: 1.03,
+        boxShadow: "0 0 15px rgba(139, 92, 246, 0.3)",
+      }}
+      whileTap={{
+        scale: 0.98,
+      }}
+      transition={{
+        duration: 0.3,
+        ease: "easeInOut",
+      }}
+    >
+      <motion.span
+        className="absolute inset-0 bg-gradient-to-r from-purple-600/20 to-blue-600/20 opacity-0 group-hover:opacity-100"
+        animate={{
+          opacity: isClicked ? 1 : [0, 0.5, 0],
+        }}
+        transition={{ duration: 0.4 }}
+      />
+
+      {isClicked && (
+        <motion.span
+          className="absolute bg-white rounded-full opacity-30"
+          initial={{ scale: 0, opacity: 0.7 }}
+          animate={{ scale: 2, opacity: 0 }}
+          transition={{ duration: 0.4 }}
+        />
+      )}
+
+      <div className="relative z-10 flex items-center justify-center">
+        <motion.span
+          className="text-white font-medium text-sm"
+          animate={{
+            x: isClicked ? [0, 2, 0] : 0,
+          }}
+          transition={{
+            x: { duration: 0.3 },
+          }}
+        >
+          Case Study
+        </motion.span>
+        <motion.div
+          className="ml-2"
+          animate={{
+            x: [0, 4, 0],
+            opacity: isClicked ? [1, 0.5, 1] : 1,
+          }}
+          transition={{
+            repeat: Infinity,
+            duration: 1.5,
+            ease: "easeInOut",
+          }}
+        >
+          <FiExternalLink className="text-white text-sm" />
+        </motion.div>
+      </div>
+    </motion.button>
+  );
+};
 
 const MyProjects = () => {
-    const [projects] = useState([
-        {
-            id: 1,
-            title: "E-Commerce Platform",
-            description: "A full-featured online store with product filtering, cart functionality, and secure checkout.",
-            image: "/ecommerce-demo.jpg",
-            technologies: ["React", "Node.js", "MongoDB", "Stripe API"],
-            githubLink: "https://github.com/yourusername/ecommerce-platform",
-            liveLink: "https://yourstore.example.com",
-            challenges: "Implementing real-time inventory updates proved challenging with high traffic volumes.",
-            improvements: "Plan to add AI-powered product recommendations and a mobile app version."
-        },
-        {
-            id: 2,
-            title: "Task Management App",
-            description: "Collaborative task manager with drag-and-drop interface and team permissions.",
-            image: "/taskmanager-demo.jpg",
-            technologies: ["React", "Firebase", "Tailwind CSS"],
-            githubLink: "https://github.com/yourusername/task-manager",
-            liveLink: "https://tasks.example.com",
-            challenges: "Syncing real-time updates across multiple users required careful state management.",
-            improvements: "Will implement calendar view and integration with email reminders."
-        },
-        {
-            id: 3,
-            title: "Weather Dashboard",
-            description: "Real-time weather visualization with 5-day forecasts and location search.",
-            image: "/weather-demo.jpg",
-            technologies: ["JavaScript", "OpenWeather API", "Chart.js"],
-            githubLink: "https://github.com/yourusername/weather-app",
-            liveLink: "https://weatherapp.example.com",
-            challenges: "Handling API rate limits while maintaining responsive UI was tricky.",
-            improvements: "Planning to add severe weather alerts and historical data comparison."
-        }
-    ]);
+  const [projects] = useState([
+    {
+      id: 1,
+      title: "Volunteer Management Platform",
+      description:
+        "A full-stack solution connecting NGOs with volunteers, featuring real-time coordination, Stripe payments for donations, and volunteer hour tracking. Implemented secure authentication and role-based access control.",
+      image: image1,
+      technologies: [
+        "React",
+        "Node.js",
+        "Firebase",
+        "Express",
+        "MongoDB",
+        "JWT Auth",
+        "Tailwind CSS",
+      ],
+      githubLink: "https://github.com/afrinbhuiyan/kind-hands-client",
+      liveLink: "https://kind-hands-50929.web.app/",
+      challenges:
+        "Managing real-time updates across thousands of concurrent users while maintaining performance required careful optimization.",
+      solutions:
+        "Implemented WebSockets for live updates and optimized MongoDB indexes to reduce query times by 70%.",
+      role: "Full-stack Developer",
+    },
+    {
+      id: 2,
+      title: "Freelance Task Marketplace",
+      description:
+        "A dynamic platform where businesses can post tasks and freelancers can bid on projects. Features include real-time messaging, milestone payments, and review systems.",
+      image: image2,
+      technologies: [
+        "React",
+        "Node.js",
+        "Firebase",
+        "Express",
+        "MongoDB",
+        "Tailwind CSS",
+      ],
+      githubLink:
+        "https://github.com/afrinbhuiyan/freelance-task-marketplace-client",
+      liveLink: "https://gorgeous-khapse-7b99f1.netlify.app/",
+      challenges:
+        "Ensuring data consistency during high-frequency bid updates while preventing race conditions.",
+      solutions:
+        "Developed a custom bidding queue system with Firebase transactions to maintain data integrity.",
+      role: "Full-stack Developer",
+    },
+    {
+      id: 3,
+      title: "Local Event Discovery",
+      description:
+        "Community hub for discovering and promoting local sports events with features like weather integration, attendance tracking, and social sharing.",
+      image: image3,
+      technologies: [
+        "Next.js",
+        "Firebase",
+        "Weather API",
+        "Tailwind CSS",
+      ],
+      githubLink: "https://github.com/afrinbhuiyan/gameday-local-platform",
+      liveLink: "https://starlit-nougat-c89c38.netlify.app/",
+      challenges:
+        "Displaying real-time weather data for event locations without exceeding API rate limits.",
+      solutions:
+        "Implemented smart caching with Firebase and batch API requests to reduce calls by 85%.",
+      role: "Frontend Lead",
+    },
+  ]);
 
-    const [selectedProject, setSelectedProject] = useState(null);
+  const [selectedProject, setSelectedProject] = useState(null);
+  const [hoveredProject, setHoveredProject] = useState(null);
 
-    return (
-        <section id="projects" className="py-20">
-            <div className="container mx-auto px-4">
-                <h2 className="text-3xl md:text-4xl font-bold text-center mb-4 text-gray-800">
-                    My <span className="text-blue-600">Projects</span>
-                </h2>
-                <p className="text-center text-gray-600 mb-12 max-w-2xl mx-auto">
-                    Here are some of my featured works. Each project was an opportunity to solve unique challenges.
-                </p>
+  return (
+    <section
+      id="projects"
+      className="py-24 bg-gray-900 relative overflow-hidden"
+    >
+      <div className="container mx-auto px-4 relative z-10">
+        {/* Section header */}
+        <motion.div
+          className="text-center mb-16"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+          viewport={{ once: true }}
+        >
+          <h2 className="text-4xl md:text-5xl font-bold mb-4 text-white">
+            Featured{" "}
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-blue-400">
+              Projects
+            </span>
+          </h2>
+          <div className="w-24 h-1 bg-gradient-to-r from-purple-500 to-blue-500 mx-auto rounded-full" />
+          <p className="text-gray-400 mt-4 max-w-2xl mx-auto">
+            Each project represents unique challenges and innovative solutions
+          </p>
+        </motion.div>
 
-                {/* Projects Grid */}
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                    {projects.map(project => (
-                        <div 
-                            key={project.id} 
-                            className="bg-gray-50 rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300"
-                        >
-                            <img 
-                                src={project.image} 
-                                alt={project.title} 
-                                className="w-full h-48 object-cover"
-                            />
-                            <div className="p-6">
-                                <h3 className="text-xl font-bold mb-2 text-gray-800">{project.title}</h3>
-                                <p className="text-gray-600 mb-4">{project.description}</p>
-                                
-                                <div className="flex flex-wrap gap-2 mb-4">
-                                    {project.technologies.map(tech => (
-                                        <span 
-                                            key={tech} 
-                                            className="bg-blue-100 text-blue-800 text-xs px-2 py-1 rounded"
-                                        >
-                                            {tech}
-                                        </span>
-                                    ))}
-                                </div>
+        {/* Projects Grid - Side by side layout for large screens */}
+        <div className="space-y-16">
+          {projects.map((project, index) => (
+            <motion.div
+              key={project.id}
+              className="group relative overflow-hidden rounded-xl border border-gray-700 bg-gray-800/50 backdrop-blur-sm lg:flex lg:min-h-[400px]"
+              initial={{ opacity: 0, y: 50 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: index * 0.1 }}
+              viewport={{ once: true }}
+              onMouseEnter={() => setHoveredProject(project.id)}
+              onMouseLeave={() => setHoveredProject(null)}
+              whileHover={{ 
+                boxShadow: "0 10px 25px -5px rgba(0, 0, 0, 0.3)"
+              }}
+            >
+              {/* Glow effect */}
+              {hoveredProject === project.id && (
+                <motion.div
+                  className="absolute inset-0 bg-gradient-to-br from-purple-500/10 to-blue-500/10 pointer-events-none"
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  transition={{ duration: 0.3 }}
+                />
+              )}
 
-                                <div className="flex justify-between items-center">
-                                    <a 
-                                        href={project.githubLink} 
-                                        target="_blank" 
-                                        rel="noopener noreferrer"
-                                        className="text-gray-700 hover:text-blue-600 flex items-center"
-                                    >
-                                        <FiGithub className="mr-1" /> Code
-                                    </a>
-                                    <a 
-                                        href={project.liveLink} 
-                                        target="_blank" 
-                                        rel="noopener noreferrer"
-                                        className="text-gray-700 hover:text-blue-600 flex items-center"
-                                    >
-                                        <FiExternalLink className="mr-1" /> Live Demo
-                                    </a>
-                                    <button 
-                                        onClick={() => setSelectedProject(project)}
-                                        className="text-blue-600 hover:text-blue-800 font-medium"
-                                    >
-                                        View Details
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-                    ))}
+              {/* Image side - Left for even, Right for odd */}
+              <motion.div 
+                className={`lg:w-1/2 ${index % 2 === 0 ? 'lg:order-1' : 'lg:order-2'}`}
+                whileHover={{ scale: 1.02 }}
+                transition={{ duration: 0.3 }}
+              >
+                <div className="relative h-64 lg:h-full overflow-hidden">
+                  <img
+                    src={project.image}
+                    alt={project.title}
+                    className="w-full h-full object-cover transform transition-transform duration-500 group-hover:scale-105"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-gray-900/80 via-transparent to-transparent lg:bg-gradient-to-r lg:via-transparent" 
+                    style={index % 2 === 0 ? 
+                      { backgroundImage: 'linear-gradient(to right, rgba(17, 24, 39, 0.9), transparent)' } : 
+                      { backgroundImage: 'linear-gradient(to left, rgba(17, 24, 39, 0.9), transparent)' }
+                    }
+                  />
+                </div>
+              </motion.div>
+
+              {/* Content side */}
+              <div className={`p-8 lg:w-1/2 ${index % 2 === 0 ? 'lg:order-2' : 'lg:order-1'}`}>
+                <div className="flex justify-between items-start mb-4">
+                  <h3 className="text-2xl font-bold text-white">
+                    {project.title}
+                  </h3>
+                  <span className="text-xs bg-gray-700 text-gray-300 px-2 py-1 rounded-full">
+                    {project.role}
+                  </span>
                 </div>
 
-                {/* Project Details Modal */}
-                {selectedProject && (
-                    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50">
-                        <div className="bg-white rounded-lg max-w-2xl w-full max-h-[90vh] overflow-y-auto">
-                            <div className="relative">
-                                <img 
-                                    src={selectedProject.image} 
-                                    alt={selectedProject.title} 
-                                    className="w-full h-64 object-cover"
-                                />
-                                <button 
-                                    onClick={() => setSelectedProject(null)}
-                                    className="absolute top-4 right-4 bg-white rounded-full p-2 shadow-lg hover:bg-gray-100"
-                                >
-                                    ✕
-                                </button>
-                            </div>
-                            
-                            <div className="p-6">
-                                <h3 className="text-2xl font-bold mb-2">{selectedProject.title}</h3>
-                                
-                                <div className="flex flex-wrap gap-2 mb-4">
-                                    {selectedProject.technologies.map(tech => (
-                                        <span 
-                                            key={tech} 
-                                            className="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm"
-                                        >
-                                            {tech}
-                                        </span>
-                                    ))}
-                                </div>
+                <p className="text-gray-400 mb-6">{project.description}</p>
 
-                                <h4 className="font-semibold text-lg mt-4 mb-2">Project Description</h4>
-                                <p className="text-gray-700 mb-4">{selectedProject.description}</p>
-                                
-                                <h4 className="font-semibold text-lg mt-4 mb-2">Key Challenges</h4>
-                                <p className="text-gray-700 mb-4">{selectedProject.challenges}</p>
-                                
-                                <h4 className="font-semibold text-lg mt-4 mb-2">Future Improvements</h4>
-                                <p className="text-gray-700 mb-6">{selectedProject.improvements}</p>
-                                
-                                <div className="flex space-x-4">
-                                    <a 
-                                        href={selectedProject.githubLink} 
-                                        target="_blank" 
-                                        rel="noopener noreferrer"
-                                        className="flex items-center bg-gray-800 text-white px-4 py-2 rounded hover:bg-gray-700"
-                                    >
-                                        <FiGithub className="mr-2" /> View Code
-                                    </a>
-                                    <a 
-                                        href={selectedProject.liveLink} 
-                                        target="_blank" 
-                                        rel="noopener noreferrer"
-                                        className="flex items-center bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700"
-                                    >
-                                        <FiExternalLink className="mr-2" /> Live Demo
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
+                {/* Technologies */}
+                <div className="flex flex-wrap gap-2 mb-8">
+                  {project.technologies.map((tech, techIndex) => (
+                    <motion.span
+                      key={techIndex}
+                      className="text-xs px-3 py-1 rounded-full border border-gray-700 text-gray-300"
+                      whileHover={{
+                        backgroundColor: "rgba(124, 58, 237, 0.2)",
+                        borderColor: "rgba(167, 139, 250, 0.5)",
+                      }}
+                      transition={{ duration: 0.2 }}
+                    >
+                      {tech}
+                    </motion.span>
+                  ))}
+                </div>
+
+                {/* Action buttons */}
+                <div className="flex justify-between items-center">
+                  <div className="flex gap-4">
+                    <motion.a
+                      href={project.githubLink}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-gray-400 hover:text-white flex items-center gap-1 transition-colors"
+                      whileHover={{ y: -2 }}
+                    >
+                      <FiGithub /> Code
+                    </motion.a>
+                    <motion.a
+                      href={project.liveLink}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-gray-400 hover:text-white flex items-center gap-1 transition-colors"
+                      whileHover={{ y: -2 }}
+                    >
+                      <FiExternalLink /> Live
+                    </motion.a>
+                  </div>
+                  <CaseStudyButton
+                    project={project}
+                    onClick={setSelectedProject}
+                  />
+                </div>
+              </div>
+            </motion.div>
+          ))}
+        </div>
+      </div>
+
+      {/* Project Details Modal */}
+      <AnimatePresence>
+        {selectedProject && (
+          <motion.div
+            className="fixed inset-0 bg-black bg-opacity-80 flex items-center justify-center p-4 z-50 backdrop-blur-sm"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            onClick={() => setSelectedProject(null)}
+          >
+            <motion.div
+              className="bg-gray-800 rounded-xl max-w-4xl w-full max-h-[90vh] overflow-y-auto border border-gray-700 relative"
+              initial={{ scale: 0.9, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              exit={{ scale: 0.9, opacity: 0 }}
+              transition={{ type: "spring", damping: 25 }}
+              onClick={(e) => e.stopPropagation()}
+            >
+              <button
+                onClick={() => setSelectedProject(null)}
+                className="absolute top-4 right-4 bg-gray-700 hover:bg-gray-600 rounded-full p-2 z-10 transition-colors"
+              >
+                <FiX className="text-white" />
+              </button>
+
+              <div className="relative">
+                <div className="relative h-64 w-full overflow-hidden">
+                  <img
+                    src={selectedProject.image}
+                    alt={selectedProject.title}
+                    className="w-full h-full object-cover"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-gray-900/90 via-transparent to-transparent" />
+                </div>
+
+                <div className="p-8">
+                  <div className="flex justify-between items-start mb-6">
+                    <div>
+                      <h3 className="text-2xl md:text-3xl font-bold text-white mb-2">
+                        {selectedProject.title}
+                      </h3>
+                      <span className="text-sm bg-gray-700 text-gray-300 px-3 py-1 rounded-full">
+                        {selectedProject.role}
+                      </span>
                     </div>
-                )}
-            </div>
-        </section>
-    );
+
+                    <div className="flex gap-3">
+                      <motion.a
+                        href={selectedProject.githubLink}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="bg-gray-700 hover:bg-gray-600 p-2 rounded-lg transition-colors"
+                        title="View Code"
+                        whileHover={{ scale: 1.1 }}
+                        whileTap={{ scale: 0.95 }}
+                      >
+                        <FiGithub className="text-white text-xl" />
+                      </motion.a>
+                      <motion.a
+                        href={selectedProject.liveLink}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="bg-blue-600 hover:bg-blue-500 p-2 rounded-lg transition-colors"
+                        title="Live Demo"
+                        whileHover={{ scale: 1.1 }}
+                        whileTap={{ scale: 0.95 }}
+                      >
+                        <FiExternalLink className="text-white text-xl" />
+                      </motion.a>
+                    </div>
+                  </div>
+
+                  <div className="grid md:grid-cols-3 gap-6 mb-8">
+                    <div className="md:col-span-2">
+                      <h4 className="text-lg font-semibold text-white mb-3">
+                        Project Overview
+                      </h4>
+                      <p className="text-gray-400 mb-6">
+                        {selectedProject.description}
+                      </p>
+
+                      <h4 className="text-lg font-semibold text-white mb-3">
+                        Technologies Used
+                      </h4>
+                      <div className="flex flex-wrap gap-2 mb-6">
+                        {selectedProject.technologies.map((tech, index) => (
+                          <motion.span
+                            key={index}
+                            className="px-3 py-1 rounded-full bg-gray-700 text-gray-300 text-sm"
+                            whileHover={{ scale: 1.05 }}
+                          >
+                            {tech}
+                          </motion.span>
+                        ))}
+                      </div>
+                    </div>
+
+                    <div className="bg-gray-700/50 rounded-lg p-5 border border-gray-600">
+                      <h4 className="text-lg font-semibold text-white mb-3">
+                        Key Challenges
+                      </h4>
+                      <p className="text-gray-400 mb-6">
+                        {selectedProject.challenges}
+                      </p>
+
+                      <h4 className="text-lg font-semibold text-white mb-3">
+                        My Solutions
+                      </h4>
+                      <p className="text-gray-400">
+                        {selectedProject.solutions}
+                      </p>
+                    </div>
+                  </div>
+
+                  <div className="flex flex-wrap gap-4">
+                    <motion.a
+                      href={selectedProject.githubLink}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex-1 flex items-center justify-center gap-2 bg-gray-700 hover:bg-gray-600 text-white px-6 py-3 rounded-lg transition-colors"
+                      whileHover={{ y: -2 }}
+                      whileTap={{ scale: 0.98 }}
+                    >
+                      <FiGithub /> View Source Code
+                    </motion.a>
+                    <motion.a
+                      href={selectedProject.liveLink}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex-1 flex items-center justify-center gap-2 bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-500 hover:to-blue-500 text-white px-6 py-3 rounded-lg transition-all"
+                      whileHover={{ y: -2 }}
+                      whileTap={{ scale: 0.98 }}
+                    >
+                      <FiExternalLink /> Visit Live Demo
+                    </motion.a>
+                  </div>
+                </div>
+              </div>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </section>
+  );
 };
 
 export default MyProjects;
