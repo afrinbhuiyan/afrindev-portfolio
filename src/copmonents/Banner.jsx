@@ -20,7 +20,6 @@ const Banner = () => {
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
   const [cursorVariant, setCursorVariant] = useState("default");
   const [particles, setParticles] = useState([]);
-  const containerRef = useRef(null);
   const [ref, inView] = useInView({ threshold: 0.1, triggerOnce: false });
 
   // Mouse movement tracker

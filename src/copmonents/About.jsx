@@ -33,9 +33,6 @@ const About = () => {
 
   return (
     <section id="about" className="relative py-20 bg-gray-900 overflow-hidden">
-      {/* Animated background elements */}
-     
-
       <div className="container mx-auto px-4 relative z-10">
         {/* Section header */}
         <motion.div 
@@ -107,9 +104,6 @@ const About = () => {
 
           {/* Right column - Skills & Interests */}
           <div className="lg:w-1/2">
-
-
-            {/* Interests section */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}

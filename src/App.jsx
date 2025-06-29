@@ -4,6 +4,7 @@ import Banner from "./copmonents/Banner";
 import Contact from "./copmonents/Contact";
 import MyProjects from "./copmonents/MyProjects";
 import Navbar from "./copmonents/Navbar";
+import Skills from "./copmonents/Skills";
 
 function App() {
   return (
@@ -11,6 +12,7 @@ function App() {
       <Navbar />
       <Banner/>
       <About/>
+      <Skills/>
       <MyProjects/>
       <Contact/>
     </>
