@@ -1,87 +1,152 @@
-import React from 'react';
+import { motion } from "framer-motion";
+import { FaCode, FaPalette, FaBookOpen, FaServer, FaBrain, FaLaptopCode, FaPencilAlt, FaLightbulb } from "react-icons/fa";
 
 const About = () => {
-    return (
-        <section id="about" className="py-20">
-            <div className="container mx-auto px-4">
-                <h2 className="text-3xl md:text-4xl font-bold text-center mb-12 text-gray-800">
-                    About <span className="text-blue-600">Me</span>
-                </h2>
-                
-                <div className="flex flex-col lg:flex-row items-center gap-12">
-                    {/* Personal Story */}
-                    <div className="lg:w-1/2">
-                        <h3 className="text-2xl font-semibold mb-4 text-gray-700">My Journey</h3>
-                        <p className="text-gray-600 mb-6 leading-relaxed">
-                            Hello! I'm Afrin, a passionate Full Stack Developer with 2 years of experience building web applications. 
-                            My coding journey began when I built my first HTML website in college, and I've been hooked ever since.
-                        </p>
-                        <p className="text-gray-600 mb-6 leading-relaxed">
-                            I specialize in the MERN stack (MongoDB, Express, React, Node.js) and love creating seamless user experiences. 
-                            What excites me most about programming is solving complex problems with elegant solutions.
-                        </p>
-                        <p className="text-gray-600 leading-relaxed">
-                            When I'm not coding, you'll find me hiking in nature, reading sci-fi novels, or experimenting with new recipes in the kitchen. 
-                            I believe a balanced life makes me a better developer.
-                        </p>
-                    </div>
 
-                    {/* Skills Section */}
-                    <div className="lg:w-1/2 w-full">
-                        <h3 className="text-2xl font-semibold mb-6 text-gray-700">My Skills</h3>
-                        
-                        <div className="space-y-4">
-                            {/* Frontend Skills */}
-                            <div>
-                                <h4 className="text-lg font-medium text-gray-700 mb-2">Frontend</h4>
-                                <div className="flex flex-wrap gap-2">
-                                    {['React', 'JavaScript', 'HTML5', 'CSS3', 'Tailwind CSS'].map(skill => (
-                                        <span key={skill} className="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm">
-                                            {skill}
-                                        </span>
-                                    ))}
-                                </div>
-                            </div>
+  const interests = [
+    {
+      icon: <FaPalette className="text-lg" />,
+      title: "Traditional Painting",
+      description: "Working with acrylics and watercolors on canvas and paper"
+    },
+    {
+      icon: <FaBookOpen className="text-lg" />,
+      title: "Sci-Fi Literature",
+      description: "Exploring futuristic concepts and ideas"
+    },
+    {
+      icon: <FaBrain className="text-lg" />,
+      title: "Learning",
+      description: "Constantly expanding my knowledge base"
+    },
+    {
+      icon: <FaPencilAlt className="text-lg" />,
+      title: "Drawing",
+      description: "Sketching portraits and landscapes with graphite and charcoal"
+    },
+    {
+      icon: <FaLightbulb className="text-lg" />,
+      title: "Creative Problem Solving",
+      description: "Applying artistic thinking to development challenges"
+    }
+  ];
 
-                            {/* Backend Skills */}
-                            <div>
-                                <h4 className="text-lg font-medium text-gray-700 mb-2">Backend</h4>
-                                <div className="flex flex-wrap gap-2">
-                                    {['Node.js', 'Express', 'MongoDB', 'REST APIs'].map(skill => (
-                                        <span key={skill} className="bg-green-100 text-green-800 px-3 py-1 rounded-full text-sm">
-                                            {skill}
-                                        </span>
-                                    ))}
-                                </div>
-                            </div>
+  return (
+    <section id="about" className="relative py-20 bg-gray-900 overflow-hidden">
+      {/* Animated background elements */}
+     
 
-                            {/* Tools */}
-                            <div>
-                                <h4 className="text-lg font-medium text-gray-700 mb-2">Tools</h4>
-                                <div className="flex flex-wrap gap-2">
-                                    {['Git', 'VS Code', 'Postman', 'Figma'].map(skill => (
-                                        <span key={skill} className="bg-purple-100 text-purple-800 px-3 py-1 rounded-full text-sm">
-                                            {skill}
-                                        </span>
-                                    ))}
-                                </div>
-                            </div>
-                        </div>
+      <div className="container mx-auto px-4 relative z-10">
+        {/* Section header */}
+        <motion.div 
+          className="text-center mb-16"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+          viewport={{ once: true }}
+        >
+          <h2 className="text-4xl md:text-5xl font-bold mb-4 text-white">
+            About <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-blue-400">Me</span>
+          </h2>
+          <div className="w-24 h-1 bg-gradient-to-r from-purple-500 to-blue-500 mx-auto rounded-full" />
+        </motion.div>
 
-                        {/* Education */}
-                        <div className="mt-8">
-                            <h3 className="text-2xl font-semibold mb-4 text-gray-700">Education</h3>
-                            <div className="bg-white p-4 rounded-lg shadow">
-                                <h4 className="font-medium text-gray-800">Bachelor of Science in Computer Science</h4>
-                                <p className="text-gray-600">University Name, 2020-2024</p>
-                                <p className="text-gray-500 text-sm mt-1">GPA: 3.8/4.0</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+        <div className="flex flex-col lg:flex-row gap-12 lg:gap-16">
+          {/* Left column - Introduction */}
+          <motion.div 
+            className="lg:w-1/2"
+            initial={{ opacity: 0, x: -50 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+            viewport={{ once: true }}
+          >
+            <div className="mb-10">
+              <motion.div 
+                className="flex items-center gap-3 mb-6"
+                whileInView={{ opacity: 1, x: 0 }}
+                initial={{ opacity: 0, x: -20 }}
+                transition={{ delay: 0.4 }}
+              >
+                <div className="w-8 h-0.5 bg-purple-400 rounded-full" />
+                <h3 className="text-2xl font-bold text-white">My Journey</h3>
+              </motion.div>
+              
+              <p className="text-gray-300 mb-4 leading-relaxed">
+                Hello! I'm <span className="font-medium text-purple-300">Afrin</span>, a passionate self-taught developer specializing in modern web technologies. My coding journey began when I discovered the power of turning ideas into interactive experiences through programming.
+              </p>
+              
+              <p className="text-gray-300 mb-4 leading-relaxed">
+                I thrive on building <span className="font-medium text-blue-300">elegant solutions</span> to complex problems, with a focus on creating intuitive user interfaces and robust backend systems. The MERN stack is my playground, but I'm always exploring new technologies.
+              </p>
+              
+              <p className="text-gray-300 leading-relaxed">
+                What excites me most about development is the constant learning and the ability to create something meaningful that people can interact with and enjoy.
+              </p>
             </div>
-        </section>
-    );
+
+            {/* Coding philosophy */}
+            <motion.div
+              className="bg-gray-800/50 border border-gray-700 rounded-xl p-6 backdrop-blur-sm"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.6 }}
+            >
+              <div className="flex items-start gap-4">
+                <div className="p-3 rounded-full bg-purple-900/30 text-purple-400">
+                  <FaLaptopCode className="text-xl" />
+                </div>
+                <div>
+                  <h4 className="text-lg font-semibold text-white mb-2">My Approach</h4>
+                  <p className="text-gray-400">
+                    I believe in writing clean, maintainable code while balancing performance and aesthetics. Every project is an opportunity to push boundaries and create something remarkable.
+                  </p>
+                </div>
+              </div>
+            </motion.div>
+          </motion.div>
+
+          {/* Right column - Skills & Interests */}
+          <div className="lg:w-1/2">
+
+
+            {/* Interests section */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.6 }}
+              viewport={{ once: true }}
+            >
+              <div className="flex items-center gap-3 mb-6">
+                <div className="w-8 h-0.5 bg-indigo-400 rounded-full" />
+                <h3 className="text-2xl font-bold text-white">Beyond Coding</h3>
+              </div>
+              
+              <div className="grid sm:grid-cols-2 gap-4">
+                {interests.map((interest, index) => (
+                  <motion.div
+                    key={index}
+                    className="bg-gray-800/50 border border-gray-700 rounded-lg p-4 hover:border-purple-400/30 transition-colors"
+                    whileHover={{ y: -3 }}
+                  >
+                    <div className="flex items-start gap-3">
+                      <div className="p-2 rounded-lg bg-gradient-to-br from-purple-900/40 to-blue-900/40 text-purple-300">
+                        {interest.icon}
+                      </div>
+                      <div>
+                        <h4 className="font-medium text-white">{interest.title}</h4>
+                        <p className="text-gray-400 text-sm">{interest.description}</p>
+                      </div>
+                    </div>
+                  </motion.div>
+                ))}
+              </div>
+            </motion.div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+  );
 };
 
 export default About;
