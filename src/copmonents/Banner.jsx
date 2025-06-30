@@ -264,8 +264,8 @@ const Banner = () => {
 
               {/* Main button */}
               <motion.a
-                href="/resume.pdf"
-                download
+                // href="/resume.pdf"
+                // download
                 className="relative flex items-center gap-3 px-8 py-4 rounded-lg bg-gray-900 border border-purple-400/20 text-purple-100 font-medium group"
                 variants={{
                   hover: {

@@ -140,8 +140,8 @@ const Navbar = () => {
 
               {/* Main button with animated border */}
               <motion.a
-                href="/resume.pdf"
-                download
+                // href="/resume.pdf"
+                // download
                 className="relative flex items-center justify-center px-8 py-3 rounded-full bg-gradient-to-br from-purple-600 to-purple-800 text-white font-medium overflow-hidden"
                 variants={{
                   rest: {

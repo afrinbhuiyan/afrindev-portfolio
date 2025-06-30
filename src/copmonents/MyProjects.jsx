@@ -87,7 +87,7 @@ const MyProjects = () => {
       id: 1,
       title: "Volunteer Management Platform",
       description:
-        "A full-stack solution connecting NGOs with volunteers, featuring real-time coordination, Stripe payments for donations, and volunteer hour tracking. Implemented secure authentication and role-based access control.",
+        "A full-stack solution connecting NGOs with volunteers, featuring real-time coordination, Stripe donation handling, and volunteer hour tracking. Includes secure authentication and role-based access control.",
       image: image1,
       technologies: [
         "React",
@@ -101,9 +101,9 @@ const MyProjects = () => {
       githubLink: "https://github.com/afrinbhuiyan/kind-hands-client",
       liveLink: "https://kind-hands-50929.web.app/",
       challenges:
-        "Managing real-time updates across thousands of concurrent users while maintaining performance required careful optimization.",
+        "Scaling real-time updates across thousands of concurrent users while maintaining low latency and performance.",
       solutions:
-        "Implemented WebSockets for live updates and optimized MongoDB indexes to reduce query times by 70%.",
+        "Integrated WebSockets for real-time communication and optimized MongoDB indexing to reduce query latency by 70%.",
       role: "Full-stack Developer",
     },
     {
@@ -124,29 +124,24 @@ const MyProjects = () => {
         "https://github.com/afrinbhuiyan/freelance-task-marketplace-client",
       liveLink: "https://gorgeous-khapse-7b99f1.netlify.app/",
       challenges:
-        "Ensuring data consistency during high-frequency bid updates while preventing race conditions.",
+        "Ensuring data consistency during high-frequency bidding activity and avoiding race conditions when updating bid data.",
       solutions:
-        "Developed a custom bidding queue system with Firebase transactions to maintain data integrity.",
+        "Implemented a custom bidding queue system using Firebase transactions and backend validation to maintain data integrity.",
       role: "Full-stack Developer",
     },
     {
       id: 3,
       title: "Local Event Discovery",
       description:
-        "Community hub for discovering and promoting local sports events with features like weather integration, attendance tracking, and social sharing.",
+        "A responsive Next.js app to explore and promote local sports events with Firebase Auth and dynamic features.",
       image: image3,
-      technologies: [
-        "Next.js",
-        "Firebase",
-        "Weather API",
-        "Tailwind CSS",
-      ],
+      technologies: ["Next.js", "Firebase", "Weather API", "Tailwind CSS"],
       githubLink: "https://github.com/afrinbhuiyan/gameday-local-platform",
       liveLink: "https://starlit-nougat-c89c38.netlify.app/",
       challenges:
-        "Displaying real-time weather data for event locations without exceeding API rate limits.",
+        "No major technical challenges were encountered during development.",
       solutions:
-        "Implemented smart caching with Firebase and batch API requests to reduce calls by 85%.",
+        "Focused on clean code, responsiveness, and ensuring smooth API integration with fallback UI for better UX.",
       role: "Frontend Lead",
     },
   ]);
@@ -181,102 +176,146 @@ const MyProjects = () => {
         </motion.div>
 
         {/* Projects Grid - Side by side layout for large screens */}
-        <div className="space-y-16">
+        <div className="space-y-12 lg:space-y-16">
           {projects.map((project, index) => (
             <motion.div
               key={project.id}
-              className="group relative overflow-hidden rounded-xl border border-gray-700 bg-gray-800/50 backdrop-blur-sm lg:flex lg:min-h-[400px]"
-              initial={{ opacity: 0, y: 50 }}
+              className="group relative overflow-hidden rounded-2xl border border-gray-700/70 bg-gradient-to-br from-gray-800/40 to-gray-900/50 backdrop-blur-sm lg:flex lg:min-h-[420px] shadow-lg"
+              initial={{ opacity: 0, y: 60 }}
               whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: index * 0.1 }}
-              viewport={{ once: true }}
+              transition={{
+                duration: 0.6,
+                delay: index * 0.15,
+                ease: [0.16, 1, 0.3, 1],
+              }}
+              viewport={{ once: true, margin: "-50px" }}
               onMouseEnter={() => setHoveredProject(project.id)}
               onMouseLeave={() => setHoveredProject(null)}
-              whileHover={{ 
-                boxShadow: "0 10px 25px -5px rgba(0, 0, 0, 0.3)"
+              whileHover={{
+                boxShadow: "0 20px 40px -10px rgba(0, 0, 0, 0.4)",
+                borderColor: "rgba(139, 92, 246, 0.4)",
               }}
             >
               {/* Glow effect */}
               {hoveredProject === project.id && (
                 <motion.div
-                  className="absolute inset-0 bg-gradient-to-br from-purple-500/10 to-blue-500/10 pointer-events-none"
+                  className="absolute inset-0 bg-gradient-to-br from-purple-500/15 to-blue-500/15 pointer-events-none"
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
-                  transition={{ duration: 0.3 }}
+                  transition={{ duration: 0.4 }}
                 />
               )}
 
-              {/* Image side - Left for even, Right for odd */}
-              <motion.div 
-                className={`lg:w-1/2 ${index % 2 === 0 ? 'lg:order-1' : 'lg:order-2'}`}
-                whileHover={{ scale: 1.02 }}
-                transition={{ duration: 0.3 }}
+              {/* Floating corner accent */}
+              <div
+                className={`absolute ${
+                  index % 2 === 0 ? "left-0" : "right-0"
+                } top-0 w-16 h-16 bg-gradient-to-br from-purple-500/10 to-blue-500/10 rounded-br-2xl ${
+                  index % 2 === 0 ? "rounded-tl-2xl" : "rounded-tr-2xl"
+                }`}
+              ></div>
+
+              {/* Image side */}
+              <motion.div
+                className={`lg:w-1/2 relative ${
+                  index % 2 === 0 ? "lg:order-1" : "lg:order-2"
+                }`}
+                whileHover={{ scale: 1.03 }}
+                transition={{ duration: 0.4 }}
               >
                 <div className="relative h-64 lg:h-full overflow-hidden">
                   <img
                     src={project.image}
                     alt={project.title}
-                    className="w-full h-full object-cover transform transition-transform duration-500 group-hover:scale-105"
+                    className="w-full h-full object-cover transform transition-transform duration-700 group-hover:scale-110"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-gray-900/80 via-transparent to-transparent lg:bg-gradient-to-r lg:via-transparent" 
-                    style={index % 2 === 0 ? 
-                      { backgroundImage: 'linear-gradient(to right, rgba(17, 24, 39, 0.9), transparent)' } : 
-                      { backgroundImage: 'linear-gradient(to left, rgba(17, 24, 39, 0.9), transparent)' }
+                  <div
+                    className="absolute inset-0 bg-gradient-to-t from-gray-900/90 via-gray-900/30 to-transparent lg:bg-gradient-to-r lg:via-gray-900/20"
+                    style={
+                      index % 2 === 0
+                        ? {
+                            background:
+                              "linear-gradient(to right, rgba(12, 15, 23, 0.95), rgba(12, 15, 23, 0.3))",
+                          }
+                        : {
+                            background:
+                              "linear-gradient(to left, rgba(12, 15, 23, 0.95), rgba(12, 15, 23, 0.3))",
+                          }
                     }
                   />
                 </div>
               </motion.div>
 
               {/* Content side */}
-              <div className={`p-8 lg:w-1/2 ${index % 2 === 0 ? 'lg:order-2' : 'lg:order-1'}`}>
-                <div className="flex justify-between items-start mb-4">
-                  <h3 className="text-2xl font-bold text-white">
-                    {project.title}
-                  </h3>
-                  <span className="text-xs bg-gray-700 text-gray-300 px-2 py-1 rounded-full">
-                    {project.role}
-                  </span>
-                </div>
-
-                <p className="text-gray-400 mb-6">{project.description}</p>
-
-                {/* Technologies */}
-                <div className="flex flex-wrap gap-2 mb-8">
-                  {project.technologies.map((tech, techIndex) => (
+              <div
+                className={`p-6 sm:p-8 lg:w-1/2 ${
+                  index % 2 === 0 ? "lg:order-2" : "lg:order-1"
+                } flex flex-col justify-between`}
+              >
+                <div>
+                  <div className="flex justify-between items-start mb-4">
+                    <h3 className="text-2xl sm:text-3xl font-bold text-white leading-tight">
+                      {project.title}
+                    </h3>
                     <motion.span
-                      key={techIndex}
-                      className="text-xs px-3 py-1 rounded-full border border-gray-700 text-gray-300"
-                      whileHover={{
-                        backgroundColor: "rgba(124, 58, 237, 0.2)",
-                        borderColor: "rgba(167, 139, 250, 0.5)",
-                      }}
-                      transition={{ duration: 0.2 }}
+                      className="text-xs bg-gray-700/80 text-gray-300 px-3 py-1.5 rounded-full border border-gray-600"
+                      whileHover={{ scale: 1.05 }}
                     >
-                      {tech}
+                      {project.role}
                     </motion.span>
-                  ))}
+                  </div>
+
+                  <p className="text-gray-300 mb-6 text-base leading-relaxed">
+                    {project.description}
+                  </p>
+
+                  {/* Technologies */}
+                  <div className="flex flex-wrap gap-2 mb-6">
+                    {project.technologies.map((tech, techIndex) => (
+                      <motion.span
+                        key={techIndex}
+                        className="text-xs px-3 py-1.5 rounded-full border border-gray-700 text-gray-300 bg-gray-800/60 hover:bg-gray-700/60 transition-all"
+                        whileHover={{
+                          scale: 1.05,
+                          backgroundColor: "rgba(124, 58, 237, 0.2)",
+                          borderColor: "rgba(167, 139, 250, 0.5)",
+                        }}
+                        transition={{ duration: 0.2 }}
+                      >
+                        {tech}
+                      </motion.span>
+                    ))}
+                  </div>
                 </div>
 
                 {/* Action buttons */}
-                <div className="flex justify-between items-center">
-                  <div className="flex gap-4">
+                <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mt-4">
+                  <div className="flex gap-5">
                     <motion.a
                       href={project.githubLink}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="text-gray-400 hover:text-white flex items-center gap-1 transition-colors"
+                      className="text-gray-400 hover:text-white flex items-center gap-2 transition-colors group"
                       whileHover={{ y: -2 }}
                     >
-                      <FiGithub /> Code
+                      <span className="relative">
+                        <FiGithub className="text-lg" />
+                        <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-purple-400 group-hover:w-full transition-all duration-300"></span>
+                      </span>
+                      <span className="text-sm font-medium">Code</span>
                     </motion.a>
                     <motion.a
                       href={project.liveLink}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="text-gray-400 hover:text-white flex items-center gap-1 transition-colors"
+                      className="text-gray-400 hover:text-white flex items-center gap-2 transition-colors group"
                       whileHover={{ y: -2 }}
                     >
-                      <FiExternalLink /> Live
+                      <span className="relative">
+                        <FiExternalLink className="text-lg" />
+                        <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-blue-400 group-hover:w-full transition-all duration-300"></span>
+                      </span>
+                      <span className="text-sm font-medium">Live</span>
                     </motion.a>
                   </div>
                   <CaseStudyButton
