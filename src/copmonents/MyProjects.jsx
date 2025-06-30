@@ -135,7 +135,7 @@ const MyProjects = () => {
       description:
         "A responsive Next.js app to explore and promote local sports events with Firebase Auth and dynamic features.",
       image: image3,
-      technologies: ["Next.js", "Firebase", "Weather API", "Tailwind CSS"],
+      technologies: ["Next.js", "Firebase", "react-router", "Tailwind CSS"],
       githubLink: "https://github.com/afrinbhuiyan/gameday-local-platform",
       liveLink: "https://starlit-nougat-c89c38.netlify.app/",
       challenges:
