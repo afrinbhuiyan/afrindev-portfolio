@@ -6,6 +6,8 @@ import {
   FaPaperPlane,
   FaGithub,
   FaLinkedin,
+  FaTwitter,
+  FaFacebook,
 } from "react-icons/fa";
 import { RiSendPlaneFill } from "react-icons/ri";
 import { motion } from "framer-motion";
@@ -80,15 +82,23 @@ const Contact = () => {
   return (
     <section
       id="contact"
-      className="py-16 bg-gray-900 relative overflow-hidden"
+      className="py-16 bg-gray-900 relative overflow-hidden min-h-screen"
     >
+      {/* Animated Background Elements */}
+      <div className="absolute inset-0 overflow-hidden">
+        <div className="absolute top-20 left-10 w-72 h-72 bg-cyan-500/10 rounded-full blur-3xl animate-pulse" />
+        <div className="absolute bottom-20 right-10 w-72 h-72 bg-purple-500/10 rounded-full blur-3xl animate-pulse delay-1000" />
+
+        {/* Grid Pattern */}
+        <div className="absolute inset-0 opacity-[0.03] bg-[linear-gradient(#ffffff_1px,transparent_1px),linear-gradient(90deg,#ffffff_1px,transparent_1px)] bg-[size:50px_50px]" />
+      </div>
       {/* Minimal background elements */}
       <div className="absolute top-0 left-0 w-full h-full overflow-hidden z-0">
         <div className="absolute top-20 left-10 w-40 h-40 bg-purple-900 rounded-full filter blur-3xl opacity-10"></div>
         <div className="absolute bottom-10 right-20 w-60 h-60 bg-blue-900 rounded-full filter blur-3xl opacity-10"></div>
       </div>
 
-      <div className="container mx-auto px-4 relative z-10">
+      <div className="container mx-auto px-4 relative z-10  mt-20">
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
@@ -216,7 +226,7 @@ const Contact = () => {
                         : "border-gray-700"
                     }`}
                     required
-                    placeholder="Tell me about your project..."
+                    placeholder="Type your message here"
                   ></textarea>
                 </div>
 
@@ -265,7 +275,7 @@ const Contact = () => {
                       href="mailto:contact@example.com"
                       className="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-blue-400 hover:from-purple-300 hover:to-blue-300"
                     >
-                      mstafrinbhuiyan@example.com
+                      mstafrinbhuiyan@gmail.com
                     </a>
                   </div>
                 </motion.div>
@@ -319,21 +329,48 @@ const Contact = () => {
                       href="https://github.com/afrinbhuiyan"
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="bg-gray-800 hover:bg-purple-600 p-3 rounded-lg transition-all flex items-center justify-center"
-                      whileHover={{ y: -2 }}
+                      className="bg-gray-800 hover:bg-gray-700 p-3 rounded-lg transition-all flex items-center justify-center"
+                      whileHover={{ y: -2, scale: 1.1 }}
                       whileTap={{ scale: 0.95 }}
+                      title="GitHub"
                     >
                       <FaGithub className="text-xl text-white" />
                     </motion.a>
+
                     <motion.a
-                      href="#"
+                      href="https://www.linkedin.com/in/afrin-bhuiyan-b81388377?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app"
                       target="_blank"
                       rel="noopener noreferrer"
                       className="bg-gray-800 hover:bg-blue-600 p-3 rounded-lg transition-all flex items-center justify-center"
-                      whileHover={{ y: -2 }}
+                      whileHover={{ y: -2, scale: 1.1 }}
                       whileTap={{ scale: 0.95 }}
+                      title="LinkedIn"
                     >
                       <FaLinkedin className="text-xl text-white" />
+                    </motion.a>
+
+                    <motion.a
+                      href="https://x.com/afrin691101"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="bg-gray-800 hover:bg-blue-400 p-3 rounded-lg transition-all flex items-center justify-center"
+                      whileHover={{ y: -2, scale: 1.1 }}
+                      whileTap={{ scale: 0.95 }}
+                      title="Twitter"
+                    >
+                      <FaTwitter className="text-xl text-white" />
+                    </motion.a>
+                    {/* Facebook */}
+                    <motion.a
+                      href="https://www.facebook.com/mst.afrin.528517/"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="bg-gray-800 hover:bg-blue-500 p-3 rounded-lg transition-all flex items-center justify-center"
+                      whileHover={{ y: -2, scale: 1.1 }}
+                      whileTap={{ scale: 0.95 }}
+                      title="Facebook"
+                    >
+                      <FaFacebook className="text-xl text-white" />
                     </motion.a>
                   </div>
                 </div>

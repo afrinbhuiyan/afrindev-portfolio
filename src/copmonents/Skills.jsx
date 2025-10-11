@@ -1,153 +1,199 @@
+import React from "react";
 import { motion } from "framer-motion";
-import { FaCode, FaServer, FaTools, FaPalette } from "react-icons/fa";
-import { RiNextjsFill } from "react-icons/ri";
-import { SiJavascript, SiReact, SiTailwindcss, SiFirebase, SiNodedotjs, SiExpress, SiMongodb, SiVercel, SiNetlify, SiCanva, SiFigma } from "react-icons/si";
+import MouseEffect from "./MouseEffect";
+
+const SkillNode = ({ name, delay = 0 }) => (
+  <motion.div
+    initial={{ opacity: 0, scale: 0.8 }}
+    whileInView={{ opacity: 1, scale: 1 }}
+    transition={{ duration: 0.3, delay }}
+    viewport={{ once: true }}
+    className="px-4 py-2 text-cyan-300 border border-cyan-600/50 rounded-md bg-gray-900/50 text-sm lg:text-lg shadow-lg hover:bg-cyan-900/30 cursor-default"
+  >
+    {name}
+  </motion.div>
+);
 
 const SkillsSection = () => {
-  const skillCategories = [
-    {
-      name: "Frontend Development",
-      icon: <FaCode className="text-2xl text-cyan-400" />,
-      skills: [
-        { name: "HTML5", level: 95, icon: <span className="text-lg">📄</span> },
-        { name: "CSS3", level: 90, icon: <span className="text-lg">🎨</span> },
-        { name: "JavaScript", level: 85, icon: <SiJavascript className="text-lg text-yellow-400" /> },
-        { name: "React", level: 85, icon: <SiReact className="text-lg text-cyan-300" /> },
-        { name: "React Router", level: 80, icon: <span className="text-lg">🔄</span> },
-        { name: "Tailwind CSS", level: 85, icon: <SiTailwindcss className="text-lg text-cyan-300" /> },
-        { name: "Next.js", level: 90, icon: <RiNextjsFill className="text-lg text-cyan-300" /> },
-      ]
-    },
-    {
-      name: "Backend & Deployment",
-      icon: <FaServer className="text-2xl text-green-500" />,
-      skills: [
-        { name: "Node.js", level: 80, icon: <SiNodedotjs className="text-lg text-green-500" /> },
-        { name: "Express.js", level: 75, icon: <SiExpress className="text-lg text-gray-100" /> },
-        { name: "REST APIs", level: 85, icon: <span className="text-lg">🔗</span> },
-        { name: "Firebase", level: 80, icon: <SiFirebase className="text-lg text-yellow-500" /> },
-        { name: "MongoDB", level: 78, icon: <SiMongodb className="text-lg text-green-600" /> },
-        { name: "Vercel", level: 85, icon: <SiVercel className="text-lg text-black dark:text-white" /> },
-        { name: "Netlify", level: 90, icon: <SiNetlify className="text-lg text-teal-400" /> }
-      ]
-    },
-    {
-      name: "Tools & Workflow",
-      icon: <FaTools className="text-2xl text-purple-400" />,
-      skills: [
-        { name: "VS Code", level: 90, icon: <span className="text-lg">⌨</span> },
-        { name: "Git/GitHub", level: 85, icon: <span className="text-lg">⎇</span> },
-        { name: "Postman", level: 75, icon: <span className="text-lg">📡</span> },
-        { 
-          name: "Design Tools", 
-          level: 65, 
-          icon: <FaPalette className="text-lg text-pink-500" />,
-          description: "Implementing existing designs using Figma/Canva" 
-        }
-      ]
-    }
+  const frontendSkills = [
+    "HTML5", "CSS3", "JavaScript", "React.js", "Next.js", "Tailwind CSS",
+    "Bootstrap", "Git", "Figma", "VS Code", "Chrome DevTools",
+    "Responsive Design", "SEO Basics", "Web Accessibility",
+    "Chart.js", "PostCSS", "Syntax UI", "shadcn UI",
+  ];
+  const learningFrontendSkills = ["TypeScript", "Three.js", "Redux"];
+
+  const backendSkills = [
+    "Node.js", "Express.js", "MongoDB", "Mongoose", "Firebase", "Vercel",
+    "Netlify", "REST API", "JSON", "Authentication", "Authorization",
+    "JWT", "Postman", "Cloudinary", "Stripe",
+  ];
+  const learningBackendSkills = ["SQL", "PostgreSQL", "Prisma", "GraphQL", "Redis"];
+
+  const conceptualSkills = [
+    "Unit Testing", "CI/CD", "Design Patterns", "Accessibility",
+    "UX Research", "A/B Testing",
   ];
 
   return (
-    <section id="skills" className="py-20 bg-gray-900 relative overflow-hidden">
+    <section
+      id="skills"
+      className="relative min-h-screen flex flex-col items-center justify-start py-20 bg-gray-950 overflow-hidden"
+    >
+      <MouseEffect></MouseEffect>
+      {/* Animated Background Elements */}
+      <div className="absolute inset-0 overflow-hidden">
+        <div className="absolute top-20 left-10 w-72 h-72 bg-cyan-500/10 rounded-full blur-3xl animate-pulse" />
+        <div className="absolute bottom-20 right-10 w-72 h-72 bg-purple-500/10 rounded-full blur-3xl animate-pulse delay-1000" />
 
-      <div className="container mx-auto px-4 relative z-10">
-        {/* Section header */}
-        <motion.div 
-          className="text-center mb-16"
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-          viewport={{ once: true }}
-        >
-          <h2 className="text-4xl md:text-5xl font-bold mb-4 text-white">
-            Technical <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-blue-400">Expertise</span>
+        {/* Grid Pattern */}
+        <div className="absolute inset-0 opacity-[0.03] bg-[linear-gradient(#ffffff_1px,transparent_1px),linear-gradient(90deg,#ffffff_1px,transparent_1px)] bg-[size:50px_50px]" />
+      </div>
+      {/* Title */}
+      <motion.div
+        initial={{ opacity: 0, y: -20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.6 }}
+        viewport={{ once: true }}
+        className="relative z-10 flex flex-col items-center mt-20"
+      >
+        <div className="bg-[#0b1628] border-2 border-cyan-500 rounded-lg px-6 py-3 shadow-lg">
+          <h2 className="text-xl md:text-2xl font-bold text-white tracking-widest">
+            MY SKILLS
           </h2>
-          <div className="w-24 h-1 bg-gradient-to-r from-purple-500 to-blue-500 mx-auto rounded-full" />
-          <p className="text-gray-400 mt-4 max-w-2xl mx-auto">
-            My development toolkit and implementation capabilities
-          </p>
-        </motion.div>
-
-        {/* Skills grid */}
-        <div className="grid md:grid-cols-3 gap-6">
-          {skillCategories.map((category, catIndex) => (
-            <motion.div
-              key={catIndex}
-              className="bg-gray-800/50 border border-gray-700 rounded-xl p-6 backdrop-blur-sm"
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: catIndex * 0.1 }}
-              viewport={{ once: true }}
-              whileHover={{ y: -5 }}
-            >
-              <div className="flex items-center gap-3 mb-6">
-                <div className="p-2 rounded-lg bg-gradient-to-br from-purple-900/40 to-blue-900/40">
-                  {category.icon}
-                </div>
-                <h3 className="text-xl font-bold text-white">{category.name}</h3>
-              </div>
-
-              <div className="space-y-5">
-                {category.skills.map((skill, skillIndex) => (
-                  <div key={skillIndex} className="group">
-                    <div className="flex items-center justify-between mb-1">
-                      <div className="flex items-center gap-2">
-                        <div className="text-gray-300 group-hover:text-purple-300 transition-colors">
-                          {skill.icon}
-                        </div>
-                        <span className="text-gray-300 font-medium">{skill.name}</span>
-                      </div>
-                      <span className="text-sm text-gray-400">{skill.level}%</span>
-                    </div>
-                    
-                    {/* Progress bar */}
-                    <div className="w-full bg-gray-700 rounded-full h-2">
-                      <motion.div
-                        className="h-full rounded-full"
-                        initial={{ width: 0 }}
-                        whileInView={{ width: `${skill.level}%` }}
-                        transition={{ duration: 1, delay: 0.3 + (skillIndex * 0.1) }}
-                        viewport={{ once: true }}
-                        style={{
-                          background: catIndex === 0 
-                            ? 'linear-gradient(90deg, rgba(34,211,238,0.8) 0%, rgba(6,182,212,0.8) 100%)' 
-                            : catIndex === 1
-                            ? 'linear-gradient(90deg, rgba(74,222,128,0.8) 0%, rgba(22,163,74,0.8) 100%)'
-                            : 'linear-gradient(90deg, rgba(192,132,252,0.8) 0%, rgba(147,51,234,0.8) 100%)'
-                        }}
-                      />
-                    </div>
-
-                    {/* Special description for design tools */}
-                    {skill.description && (
-                      <p className="text-xs text-gray-500 mt-1 italic">
-                        {skill.description}
-                      </p>
-                    )}
-                  </div>
-                ))}
-              </div>
-            </motion.div>
-          ))}
         </div>
 
-        {/* Implementation note */}
         <motion.div
-          className="mt-12 bg-gray-800/30 border border-purple-900/50 rounded-xl p-6 max-w-3xl mx-auto text-center"
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          transition={{ duration: 0.6, delay: 0.3 }}
+          className="absolute top-full h-24 w-px bg-cyan-600/70 left-1/2 transform -translate-x-1/2"
+          initial={{ scaleY: 0 }}
+          whileInView={{ scaleY: 1 }}
+          transition={{ duration: 0.8, delay: 0.3 }}
           viewport={{ once: true }}
+        />
+      </motion.div>
+
+      {/* Branch connections */}
+      <motion.div
+        className="absolute top-[190px] w-[30%] h-px bg-cyan-600/70"
+        initial={{ scaleX: 0 }}
+        whileInView={{ scaleX: 1 }}
+        transition={{ duration: 0.8, delay: 0.6 }}
+        viewport={{ once: true }}
+        style={{ transformOrigin: "center" }}
+      />
+      <motion.div
+        className="absolute top-[190px] w-px h-[70px] left-[671px] bg-cyan-600/70"
+        initial={{ scaleY: 0 }}
+        whileInView={{ scaleY: 1 }}
+        transition={{ duration: 0.8, delay: 0.6 }}
+        viewport={{ once: true }}
+      />
+      <motion.div
+        className="absolute top-[190px] w-px h-[70px] right-[671px] bg-cyan-600/70"
+        initial={{ scaleY: 0 }}
+        whileInView={{ scaleY: 1 }}
+        transition={{ duration: 0.8, delay: 0.6 }}
+        viewport={{ once: true }}
+      />
+
+      {/* Skills layout */}
+      <div className="relative flex flex-col items-center z-10 mt-8">
+        <div className="flex flex-col md:flex-row justify-between w-full max-w-7xl px-8">
+          {/* Frontend */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.8 }}
+            viewport={{ once: true }}
+            className="flex flex-col items-center w-full md:w-1/2 px-4"
+          >
+            <h3 className="text-cyan-400 font-semibold mb-4 lg:text-2xl">
+              Frontend skills
+            </h3>
+            <div className="flex flex-wrap justify-center gap-2">
+              {frontendSkills.map((s, i) => (
+                <SkillNode key={`frontend-${i}`} name={s} delay={1 + i * 0.05} />
+              ))}
+            </div>
+
+            <motion.div
+              className="w-px h-14 bg-cyan-700/50 my-1"
+              initial={{ scaleY: 0 }}
+              whileInView={{ scaleY: 1 }}
+              transition={{ duration: 0.6, delay: 1.5 }}
+              viewport={{ once: true }}
+            />
+            <h3 className="text-cyan-400 font-semibold mb-2">
+              Frontend Current Learning skills
+            </h3>
+            <div className="flex flex-wrap justify-center gap-2">
+              {learningFrontendSkills.map((s, i) => (
+                <SkillNode key={`frontend-learning-${i}`} name={s} delay={1.6 + i * 0.05} />
+              ))}
+            </div>
+          </motion.div>
+
+          {/* Center Line */}
+          <motion.div
+            className="hidden md:block w-px bg-cyan-700/50 h-64 mx-auto"
+            initial={{ scaleY: 0 }}
+            whileInView={{ scaleY: 1 }}
+            transition={{ duration: 0.8, delay: 0.8 }}
+            viewport={{ once: true }}
+          />
+
+          {/* Backend */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.8 }}
+            viewport={{ once: true }}
+            className="flex flex-col items-center w-full md:w-1/2 px-4"
+          >
+            <h3 className="text-cyan-400 font-semibold mb-4 lg:text-2xl">
+              Backend skills
+            </h3>
+            <div className="flex flex-wrap justify-center gap-2">
+              {backendSkills.map((s, i) => (
+                <SkillNode key={`backend-${i}`} name={s} delay={1 + i * 0.05} />
+              ))}
+            </div>
+
+            <motion.div
+              className="w-px h-14 bg-cyan-700/50 my-1"
+              initial={{ scaleY: 0 }}
+              whileInView={{ scaleY: 1 }}
+              transition={{ duration: 0.6, delay: 1.5 }}
+              viewport={{ once: true }}
+            />
+            <h3 className="text-cyan-400 font-semibold mb-2">
+              Backend Current Learning skills
+            </h3>
+            <div className="flex flex-wrap justify-center gap-2">
+              {learningBackendSkills.map((s, i) => (
+                <SkillNode key={`backend-learning-${i}`} name={s} delay={1.6 + i * 0.05} />
+              ))}
+            </div>
+          </motion.div>
+        </div>
+
+        {/* Conceptual Skills */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 1 }}
+          viewport={{ once: true }}
+          className="flex flex-col items-center"
         >
-          <div className="flex items-center justify-center gap-3 mb-3">
-            <SiFigma className="text-xl text-purple-400" />
-            <SiCanva className="text-xl text-blue-400" />
+          <div className="w-px h-12 bg-cyan-700/50 mb-4" />
+          <h3 className="text-cyan-400 font-semibold mb-2">
+            Conceptual Skills
+          </h3>
+          <div className="flex flex-wrap justify-center gap-2">
+            {conceptualSkills.map((s, i) => (
+              <SkillNode key={`conceptual-${i}`} name={s} delay={1.5 + i * 0.06} />
+            ))}
           </div>
-          <h4 className="text-lg font-semibold text-white mb-2">Design Implementation</h4>
-          <p className="text-gray-400">
-            While I don't create original designs, I specialize in accurately translating Figma/Canva designs into fully functional websites with pixel-perfect precision.
-          </p>
         </motion.div>
       </div>
     </section>

@@ -4,7 +4,7 @@ import { FaGithub, FaLinkedin, FaWhatsapp } from "react-icons/fa";
 
 const Footer = () => {
   return (
-    <footer className="bg-gray-900 border-t border-gray-800 py-8">
+    <footer className="bg-gray-950 border-t border-gray-800 py-8">
       <div className="container mx-auto px-4">
         <motion.div
           initial={{ opacity: 0, y: 20 }}

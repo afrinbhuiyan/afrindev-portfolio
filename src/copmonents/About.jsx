@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
 import { FaCode, FaPalette, FaBookOpen, FaServer, FaBrain, FaLaptopCode, FaPencilAlt, FaLightbulb } from "react-icons/fa";
+import MouseEffect from "./MouseEffect";
 
 const About = () => {
 
@@ -32,7 +33,16 @@ const About = () => {
   ];
 
   return (
-    <section id="about" className="relative py-20 bg-gray-900 overflow-hidden">
+    <section id="about" className="relative bg-gray-950 flex justify-center items-center min-h-screen">
+      <MouseEffect />
+      {/* Animated Background Elements */}
+      <div className="absolute inset-0 overflow-hidden">
+        <div className="absolute top-20 left-10 w-72 h-72 bg-cyan-500/10 rounded-full blur-3xl animate-pulse" />
+        <div className="absolute bottom-20 right-10 w-72 h-72 bg-purple-500/10 rounded-full blur-3xl animate-pulse delay-1000" />
+        
+        {/* Grid Pattern */}
+        <div className="absolute inset-0 opacity-[0.03] bg-[linear-gradient(#ffffff_1px,transparent_1px),linear-gradient(90deg,#ffffff_1px,transparent_1px)] bg-[size:50px_50px]" />
+      </div>
       <div className="container mx-auto px-4 relative z-10">
         {/* Section header */}
         <motion.div 
